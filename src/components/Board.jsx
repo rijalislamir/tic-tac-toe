@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaRegCircle } from "react-icons/fa"
-import { FaTimesCircle } from "react-icons/fa"
+import { FaRegSquare } from "react-icons/fa"
 
 const Board = props => {
     const {
@@ -17,7 +17,7 @@ const Board = props => {
                 ? null 
                 : item === 1 
                     ? <FaRegCircle className='text-8xl' />
-                    : <FaTimesCircle className='text-8xl text-white' /> 
+                    : <FaRegSquare className='text-8xl text-white' /> 
                 }
             </div>)}
         </div>
