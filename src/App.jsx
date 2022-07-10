@@ -78,28 +78,26 @@ function App() {
     ])
   }
 
+  const setBackgroundColorBoardCell = (i, item) => {
+    if (winCombination.includes(i)) return "flex items-center justify-center w-[30%] h-[30%] cursor-pointer bg-green-400"
+    if (winCombination.length && item !== undefined && item !== board[winCombination[0]]) return "flex items-center justify-center w-[30%] h-[30%] cursor-pointer bg-red-400"
+    if (winCombination.length && item === undefined) return "flex items-center justify-center w-[30%] h-[30%] cursor-pointer bg-blue-900"
+    return "flex items-center justify-center w-[30%] h-[30%] cursor-pointer bg-blue-400"
+  }
+
   return (
     <div className='flex flex-col justify-center items-center bg-blue-500 h-screen w-screen'>
       <h1>Tic Tac Toe</h1>
       <p>Score: {score[0]/2} - {score[1]/2}</p>
       <div className='flex flex-wrap mx-auto text-center content-between justify-between w-[90vw] max-w-[450px] h-[90vw] max-h-[450px]'>
         {board.map((item, i) => 
-          <div 
-            key={i}
-            onClick={() => setValue(i)}
-            className={winCombination.includes(i)
-              ? "flex items-center justify-center bg-green-400 w-[30%] h-[30%] cursor-pointer"
-              : !winCombination.length || item === undefined
-                ? "flex items-center justify-center bg-blue-400 w-[30%] h-[30%] cursor-pointer"
-                : "flex items-center justify-center bg-red-400 w-[30%] h-[30%] cursor-pointer"
+          <div key={i} onClick={() => setValue(i)} className={setBackgroundColorBoardCell(i, item)}>
+            {item === undefined 
+              ? null 
+              : item === 1 
+                ? <FaRegCircle className='text-8xl' />
+                : <FaTimesCircle className='text-8xl text-white' /> 
             }
-          >
-          {item === undefined 
-            ? null 
-            : item === 1 
-              ? <FaRegCircle className='text-8xl' />
-              : <FaTimesCircle className='text-8xl text-white' /> 
-          }
         </div>)}
       </div>
       {winCombination.length ? <button onClick={resetBoard} className='bg-blue-800 text-white px-5 py-2 rounded-xl'>Next</button> : null}
