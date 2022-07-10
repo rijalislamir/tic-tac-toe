@@ -63,7 +63,11 @@ function App() {
             onClick={() => setValue(i)}
             className={winCombination.includes(i)
               ? "flex items-center justify-center bg-green-400 w-[30%] h-[30%] cursor-pointer"
-              : "flex items-center justify-center bg-blue-400 w-[30%] h-[30%] cursor-pointer"}>
+              : !winCombination.length || item === undefined
+                ? "flex items-center justify-center bg-blue-400 w-[30%] h-[30%] cursor-pointer"
+                : "flex items-center justify-center bg-red-400 w-[30%] h-[30%] cursor-pointer"
+            }
+          >
           {item === undefined 
             ? null 
             : item === 1 
