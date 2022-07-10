@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   const [turn, setTurn] = useState(1)
   const [winCombination, setWinCombination] = useState([])
+  const [score, setScore] = useState([0, 0])
   const [board, setBoard] = useState([
     undefined,
     undefined,
@@ -53,9 +54,34 @@ function App() {
     }
   }
 
+  const resetBoard = () => {
+    setScore(prevScore => {
+      console.log(prevScore)
+      const winner = board[winCombination[0]]-1
+      const newScore = prevScore
+      newScore[winner]++
+      
+      return newScore
+    })
+    setTurn(1)
+    setWinCombination([])
+    setBoard([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined
+    ])
+  }
+
   return (
     <div className='flex flex-col justify-center items-center bg-blue-500 h-screen w-screen'>
       <h1>Tic Tac Toe</h1>
+      <p>Score: {score[0]/2} - {score[1]/2}</p>
       <div className='flex flex-wrap mx-auto text-center content-between justify-between w-[90vw] max-w-[450px] h-[90vw] max-h-[450px]'>
         {board.map((item, i) => 
           <div 
@@ -76,6 +102,7 @@ function App() {
           }
         </div>)}
       </div>
+      {winCombination.length ? <button onClick={resetBoard} className='bg-blue-800 text-white px-5 py-2 rounded-xl'>Next</button> : null}
       <p>Built by Rijal Islami</p>
     </div>
   );
