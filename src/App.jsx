@@ -130,7 +130,7 @@ function App() {
         </div>
       </div>
       <div className='h-[60px] flex items-center justify-center'>
-        {winCombination.length ? <button onClick={resetBoard} className='bg-blue-800 text-white px-5 py-2 rounded-xl'>
+        {winCombination.length || board.every(item => item !== undefined) ? <button onClick={resetBoard} className='bg-blue-800 text-white px-5 py-2 rounded-xl'>
           New
         </button> : null}
       </div>
