@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     checkAnyCombination()
-  }, [turn])
+  }, [turn]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const setValue = (index) => {
     if (board[index] === undefined && !winCombination.length) {
@@ -117,6 +117,7 @@ function App() {
           turn={turn}
           setValue={setValue}
           setBackgroundColorBoardCell={setBackgroundColorBoardCell}
+          winCombination={winCombination}
         />
         <div className="hidden lg:flex justify-center items-center relative grow">
           <FaRegSquare
